@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.robot.db.model.StatusOutlet;
+import java.util.List;
+
 
 
 @Repository
 public interface StatusRepository extends JpaRepository<StatusOutlet, Integer> {
-//	Optional<StatusOutlet> findById(Integer id);
+//	StatusOutlet findById(Integer id);
+	
+	StatusOutlet findById(int id);
 }

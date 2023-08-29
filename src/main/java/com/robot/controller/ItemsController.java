@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.robot.dto.items.ItemsDTO;
+import com.robot.dto.ItemsDTO;
 import com.robot.service.ItemsService;
 
 @RestController

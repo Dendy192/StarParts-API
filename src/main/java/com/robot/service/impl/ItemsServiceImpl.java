@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.robot.db.model.Items;
-import com.robot.dto.items.ItemsDTO;
-import com.robot.dto.items.ItemsDTOData;
+import com.robot.dto.ItemsDTO;
+import com.robot.dto.ItemsDTOData;
 import com.robot.repo.ItemsRepository;
 import com.robot.service.ItemsService;
 

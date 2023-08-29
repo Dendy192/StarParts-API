@@ -1,4 +1,4 @@
-package com.robot.dto.Outlet;
+package com.robot.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

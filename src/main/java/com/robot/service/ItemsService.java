@@ -1,6 +1,6 @@
 package com.robot.service;
 
-import com.robot.dto.items.ItemsDTO;
+import com.robot.dto.ItemsDTO;
 
 public interface ItemsService {
 	ItemsDTO findByBrand(String brand);

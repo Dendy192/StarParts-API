@@ -1,4 +1,4 @@
-package com.robot.dto.Outlet;
+package com.robot.dto;
 
 public class OutletDTOStatus {
 	private boolean success;

@@ -3,8 +3,8 @@ package com.robot.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.robot.dto.Outlet.OutletDTO;
-import com.robot.dto.Outlet.OutletDTOData;
+import com.robot.dto.OutletDTO;
+import com.robot.dto.OutletDTOData;
 
 
 public interface OutletService {

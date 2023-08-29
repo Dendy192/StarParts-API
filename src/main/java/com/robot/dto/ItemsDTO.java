@@ -1,4 +1,4 @@
-package com.robot.dto.items;
+package com.robot.dto;
 
 import java.util.List;
 
