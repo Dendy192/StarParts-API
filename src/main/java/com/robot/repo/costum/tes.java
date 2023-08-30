@@ -13,4 +13,7 @@ public interface tes {
 //			+ "\"ITEM_PRICE\", \"ITEM_STOCK\", \"ITEM_IS_ACTIVE\" "
 //			+ "FROM \"SP_ITEMS\" WHERE \"ITEM_BRAND\" = :brand AND \"ITEM_IS_ACTIVE\" = :status" , nativeQuery = true)
 //	List<Items> FindItem(@Param("brand")String itemBrand, @Param("status")String itemIsActive);
+	
+	@Query(value = "SELECT * FROM \"SP_ITEMS\" WHERE \"ITEM_BRAND\" = ?1 AND \"ITEM_JENIS\" = ?2 AND \"ITEM_STOCK\" != ?3 AND \"ITEM_IS_ACTIVE\" = ?4")
+	List<Items> findItem (String brand,String jenis, int stock, String status);
 }

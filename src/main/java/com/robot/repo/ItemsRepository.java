@@ -15,4 +15,8 @@ import com.robot.repo.costum.tes;
 public interface ItemsRepository extends JpaRepository<Items, String>,tes {
 	
 	List<Items> findByitemBrandAndItemIsActive(String brand, String status);
+	
+	
+	
+//	List<Items> findByitemBrandAnditemJenisAnditemStockAndItemIsActive(String brand,String jenis, int stock, String status);
 }

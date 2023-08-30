@@ -17,6 +17,8 @@ public class ItemsServiceImpl implements ItemsService{
 	@Autowired
 	ItemsRepository itemsRepository;
 	
+	
+	
 	@Override
 	public ItemsDTO findByBrand(String brand) {
 		// TODO Auto-generated method stub
