@@ -29,7 +29,7 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 		// TODO Auto-generated method stub
 //		WA_BOT wab = waBotRepository.findByBOT_WA_PHONE(phone);
 		Optional<WA_BOT> oWab = Optional.of(waBotRepository.findByPhone(phone));
-		System.out.println(oWab);
+//		System.out.println(oWab);
 //		if((wab !=null)) {
 //			
 //		}
@@ -39,6 +39,7 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 		String status = "";
 		boolean success = false;
 		if(oWab.isPresent()) {
+			System.out.println(oWab);
 			WA_BOT wab = oWab.get();
 			System.out.println(wab.toString());
 			int tmpS = wab.getBOT_WA_STATUS();

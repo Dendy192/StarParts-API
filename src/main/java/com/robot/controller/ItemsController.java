@@ -14,8 +14,13 @@ public class ItemsController {
 	@Autowired
 	ItemsService itemsService;
 	
+	@GetMapping("/api/item")
+	public ItemsDTO getItem(@RequestParam String brand, @RequestParam String jenis) {
+		return itemsService.findByBrand(brand, jenis);
+	}
+	
 	@GetMapping("/api/items")
-	public ItemsDTO getAllItem(@RequestParam String brand) {
-		return itemsService.findByBrand(brand);
+	public ItemsDTO getAllItem() {
+		return itemsService.findByAll();
 	}
 }
