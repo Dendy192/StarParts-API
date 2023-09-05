@@ -81,7 +81,6 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 			wabdd.setPhone("");
 			wabdd.setStatus(status);
 			wabdd.setType("");
-			wabdd.setDiscount("");
 			wabd.setStatus(statusMessage);
 			wabd.setSuccess(success);
 			wabd.setData(wabdd);
