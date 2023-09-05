@@ -30,6 +30,9 @@ public class WA_BOT implements Serializable {
 	@Column(name = "\"BOT_WA_PHONE\"")
 	private String phone;
 	
+	@Column(name = "\"BOT_WA_DISCOUNT\"")
+	private String discount;
+	
 	public String getBOT_WA_ID() {
 		return BOT_WA_ID;
 	}
@@ -54,11 +57,18 @@ public class WA_BOT implements Serializable {
 	public void setBOT_WA_STATUS(int bOT_WA_STATUS) {
 		BOT_WA_STATUS = bOT_WA_STATUS;
 	}
-	public String getBOT_WA_PHONE() {
+	
+	public String getPhone() {
 		return phone;
 	}
-	public void setBOT_WA_PHONE(String Phone) {
-		phone = Phone;
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getDiscount() {
+		return discount;
+	}
+	public void setDiscount(String discount) {
+		this.discount = discount;
 	}
 	@Override
 	public String toString() {
