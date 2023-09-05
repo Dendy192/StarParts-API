@@ -28,10 +28,10 @@ public class WA_BOT implements Serializable {
 	private int BOT_WA_STATUS;
 	
 	@Column(name = "\"BOT_WA_PHONE\"")
-	private String phone;
+	private String BOT_WA_PHONE;
 	
 	@Column(name = "\"BOT_WA_DISCOUNT\"")
-	private String discount;
+	private String BOT_WA_DISCOUNT;
 	
 	public String getBOT_WA_ID() {
 		return BOT_WA_ID;
@@ -57,24 +57,26 @@ public class WA_BOT implements Serializable {
 	public void setBOT_WA_STATUS(int bOT_WA_STATUS) {
 		BOT_WA_STATUS = bOT_WA_STATUS;
 	}
-	
-	public String getPhone() {
-		return phone;
+	public String getBOT_WA_PHONE() {
+		return BOT_WA_PHONE;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setBOT_WA_PHONE(String bOT_WA_PHONE) {
+		BOT_WA_PHONE = bOT_WA_PHONE;
 	}
-	public String getDiscount() {
-		return discount;
+	public String getBOT_WA_DISCOUNT() {
+		return BOT_WA_DISCOUNT;
 	}
-	public void setDiscount(String discount) {
-		this.discount = discount;
+	public void setBOT_WA_DISCOUNT(String bOT_WA_DISCOUNT) {
+		BOT_WA_DISCOUNT = bOT_WA_DISCOUNT;
 	}
 	@Override
 	public String toString() {
 		return "WA_BOT [BOT_WA_ID=" + BOT_WA_ID + ", BOT_WA_NAME=" + BOT_WA_NAME + ", BOT_WA_TYPE=" + BOT_WA_TYPE
-				+ ", BOT_WA_STATUS=" + BOT_WA_STATUS + ", phone=" + phone + "]";
+				+ ", BOT_WA_STATUS=" + BOT_WA_STATUS + ", BOT_WA_PHONE=" + BOT_WA_PHONE + ", BOT_WA_DISCOUNT="
+				+ BOT_WA_DISCOUNT + "]";
 	}
+	
+	
 	
 	
 	

@@ -51,8 +51,8 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 				statusMessage = "Success";
 				wabdd.setId(wab.getBOT_WA_ID());
 				wabdd.setName(wab.getBOT_WA_NAME());
-				wabdd.setPhone(wab.getPhone());
-				wabdd.setDiscount(wab.getDiscount());
+				wabdd.setPhone(wab.getBOT_WA_PHONE());
+				wabdd.setDiscount(wab.getBOT_WA_DISCOUNT());
 				wabdd.setStatus(status);
 				wabdd.setType(wab.getBOT_WA_TYPE());
 				wabd.setStatus(statusMessage);
@@ -65,7 +65,8 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 				statusMessage = "Failed ";
 				wabdd.setId(wab.getBOT_WA_ID());
 				wabdd.setName(wab.getBOT_WA_NAME());
-				wabdd.setPhone(wab.getPhone());
+				wabdd.setPhone(wab.getBOT_WA_PHONE());
+				wabdd.setPhone(wab.getBOT_WA_DISCOUNT());
 				wabdd.setStatus(status);
 				wabdd.setType(wab.getBOT_WA_TYPE());
 				wabd.setStatus(statusMessage);
