@@ -6,7 +6,16 @@ public class WA_BOTDTOData {
 	private String phone;
 	private String status;
 	private String type;
+	private String discount;
 	
+	
+	
+	public String getDiscount() {
+		return discount;
+	}
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
 	public String getId() {
 		return id;
 	}
