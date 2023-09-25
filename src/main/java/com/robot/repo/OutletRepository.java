@@ -21,4 +21,7 @@ public interface OutletRepository extends JpaRepository<Outlet, String>, OutletR
 //	+ "INNER JOIN \"SP_TYPE_CUSTOMER\" stc ON so.\"OUTLET_TYPE\" = stc.\"ID_TYPE_CUSTOMER\" "
 //	+ "WHERE \"OUTLET_PHONE\" = ?1")
 	Outlet findByPhone(String phone);
+	
 }
+
+
