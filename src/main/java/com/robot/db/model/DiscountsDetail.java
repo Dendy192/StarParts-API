@@ -20,11 +20,13 @@ private static long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "\"DISCOUNTS_DETAIL_ID\"")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int discounDetailtId;
 	
 	@Column(name = "\"DISCOUNTS_ID\"")
 	private String discountDetailId;
+	
+	@Column(name = "DISCOUNT_DETAIL_DESCRIPTION")
+	private String discountDetailDesc;
 	
 	@Column(name = "\"DISCOUNTS_DETAIL_STATUS\"")
 	private String discountDetailStatus;
@@ -75,12 +77,24 @@ private static long serialVersionUID = 1L;
 		this.discountDetailAmmount = discountDetailAmmount;
 	}
 
+	public String getDiscountDetailDesc() {
+		return discountDetailDesc;
+	}
+
+	public void setDiscountDetailDesc(String discountDetailDesc) {
+		this.discountDetailDesc = discountDetailDesc;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "DiscountsDetail [discounDetailtId=" + discounDetailtId + ", discountDetailId=" + discountDetailId
-				+ ", discountDetailStatus=" + discountDetailStatus + ", discountDetailRules=" + discountDetailRules
-				+ ", discountDetailAmmount=" + discountDetailAmmount + "]";
+				+ ", discountDetailDesc=" + discountDetailDesc + ", discountDetailStatus=" + discountDetailStatus
+				+ ", discountDetailRules=" + discountDetailRules + ", discountDetailAmmount=" + discountDetailAmmount
+				+ "]";
 	}
+
+	
 	
 	
 	

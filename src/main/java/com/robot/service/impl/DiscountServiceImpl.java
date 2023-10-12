@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,8 @@ import jakarta.persistence.TypedQuery;
 
 @Service
 public class DiscountServiceImpl implements DiscountsService {
+	
+	private static final Logger log = LoggerFactory.getLogger(DiscountServiceImpl.class);
 
 	@Autowired
 	DiscountsRepository discountsRepository;
@@ -47,6 +51,7 @@ public class DiscountServiceImpl implements DiscountsService {
 		List<DiscountsDTOData> lDdtoD = new ArrayList<>();
 		Optional<List<Discount>> oLdc =Optional.of(discountsRepository.findAll());
 		boolean status = false;
+		try {
 		if(oLdc.isPresent()) {
 			List<Discount> lD = oLdc.get();
 			for(Discount dc : lD) {
@@ -58,6 +63,7 @@ public class DiscountServiceImpl implements DiscountsService {
 					DiscountsDTOData  ddtod  = new DiscountsDTOData();
 					if(dc.getDiscountType().equalsIgnoreCase("outlet")) {
 						String sql = "SELECT id, name, email, phone, status FROM Outlet";
+						log.info(sql);
 //						System.out.println(lO);
 //						System.out.println("msuk sini");
 						List<Outlet> lO = oE.findByQuery(sql);
@@ -69,6 +75,7 @@ public class DiscountServiceImpl implements DiscountsService {
 								ddtod.setAmmount(dd.getDiscountDetailAmmount());
 								status = true;
 								lDdtoD.add(ddtod);
+								log.info("Present data");
 							}
 //				
 						}
@@ -86,11 +93,16 @@ public class DiscountServiceImpl implements DiscountsService {
 				}
 				
 			}
-			
+		
+		}
+		}catch (Exception e) {
+			log.error(e.getMessage());
+			// TODO: handle exception
 		}
 		ddto.setStatus(status);
 		ddto.setData(lDdtoD);
 		return ddto;
+		
 	}
 	
 	private boolean isValidDateAndTime(Discount discount, java.util.Date currentDate, LocalTime time) {

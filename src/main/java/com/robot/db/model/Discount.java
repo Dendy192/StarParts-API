@@ -23,6 +23,7 @@ public class Discount implements Serializable {
 	@Column(name = "\"DISCOUNTS_NAME\"")
 	private String discountName;
 	
+	
 	@Column(name = "\"DISCOUNTS_TYPE\"")
 	private String discountType;
 	
