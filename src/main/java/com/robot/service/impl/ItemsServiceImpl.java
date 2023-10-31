@@ -37,19 +37,30 @@ public class ItemsServiceImpl implements ItemsService{
 		System.out.println("masuk ke sini ga");
 //		List<Items> items = itemsRepository.findByitemBrandAndItemIsActive(brand, "Y");
 //		List<Items> item = itemsRepository.FindItem(brand, "Y");
-		Optional<List<Items>> oItems = Optional.of(itemsRepository.findItem(brand, jenis, 0, "Y"));
+		Optional<List<Items>> oItems = null;
+		if (brand.equals("FDR")) {
+			oItems = Optional.ofNullable(itemsRepository.findItemFDR(brand, jenis, 0, "Y"));
+		}else {
+			oItems = Optional.ofNullable(itemsRepository.findItemOSRAM(brand, jenis, 0, "Y"));
+		}
 		
 		if(oItems.isPresent()) {
 			List<Items> items = oItems.get();
 			for(Items item: items) {
 //			System.out.println(item);
+//				System.out.println();
+			if(item.getItemBrand().equals("FDR")) {
+				itemBrand = item.getItemBrand();
+			}else if(item.getItemBrand().equals("OSRAM")) {
+				itemBrand = item.getItemSubBrand();
+			}
 			itemID = item.getItemID();
 			itemName = item.getItemName();
-			itemBrand = item.getItemBrand();
 			itemSubJenis =  item.getItemSubJenis();
 			itemUkuruan = item.getItemUkuran();
 			itemJenis = item.getItemJenis();
 			itemPrice = item.getItemPrice();
+//			System.out.println(itemSubJenis);
 			status = true;
 			ItemsDTOData data = new ItemsDTOData(itemID, itemName, itemBrand, itemSubJenis,itemUkuruan, itemJenis, itemPrice);
 			ld.add(data);
@@ -89,7 +100,12 @@ public class ItemsServiceImpl implements ItemsService{
 //			System.out.println(item);
 			itemID = item.getItemID();
 			itemName = item.getItemName();
-			itemBrand = item.getItemBrand();
+			if(item.getItemBrand().equals("FDR")) {
+				itemBrand = item.getItemBrand();
+			}else if(item.getItemBrand().equals("OSRAM")) {
+				itemBrand = item.getItemSubBrand();
+			}
+			
 			itemSubJenis =  item.getItemSubJenis();
 			itemUkuruan = item.getItemUkuran();
 			itemJenis = item.getItemJenis();

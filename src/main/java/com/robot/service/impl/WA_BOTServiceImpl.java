@@ -28,11 +28,13 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 	public WA_BOTDTO findByPhone(String phone) {
 		// TODO Auto-generated method stub
 //		WA_BOT wab = waBotRepository.findByBOT_WA_PHONE(phone);
-		Optional<WA_BOT> oWab = Optional.of(waBotRepository.findByPhone(phone));
+		System.out.println("ambil phonenya "+phone);
+		Optional<WA_BOT> oWab = Optional.ofNullable(waBotRepository.findByPhone(phone));
 //		System.out.println(oWab);
 //		if((wab !=null)) {
 //			
 //		}
+		System.out.println("lanjut ga??");
 		WA_BOTDTO wabd = new WA_BOTDTO();
 		WA_BOTDTOData wabdd = new WA_BOTDTOData();
 		String statusMessage = "";

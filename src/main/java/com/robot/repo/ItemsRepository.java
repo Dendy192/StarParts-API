@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.robot.db.model.Items;
-import com.robot.repo.costum.tes;
+import com.robot.repo.costum.ItemRepositoryCustom;
 
 @Repository
-public interface ItemsRepository extends JpaRepository<Items, String>,tes {
+public interface ItemsRepository extends JpaRepository<Items, String>,ItemRepositoryCustom {
 	
 	List<Items> findByitemBrandAndItemIsActive(String brand, String status);
 	

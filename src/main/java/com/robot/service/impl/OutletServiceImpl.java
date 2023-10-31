@@ -33,47 +33,47 @@ public class OutletServiceImpl implements OutletService{
 	TypeRepository typeRepository;
 
 
-	@Override
-	public OutletDTOData findByPhone(String phone) {
-		// TODO Auto-generated method 
-		Outlet ot = outletRepository.findByPhone(phone);
-		StatusOutlet so = null;
-		TypeOutlet to = null;
-		OutletDTOStatus ods = new OutletDTOStatus();
-		String id ="";
-		String name = "";
-		String phoneO = "";
-		String status ="";
-		String tName  ="";
-		int p = 0;
-		boolean msg = false;
-		if(!(ot == null)) {
-			
-		msg = true;
-//		List<OutletDTO> test = new ArrayList<>();
-		int idStatus =ot.getStatus(); 
-		int idType = ot.getType();
-//		Optional<StatusOutlet> oSo = statusRepository.findById(idStatus);
-//		if(oSo.isPresent()) {
-		 so = statusRepository.getById(idStatus);
-		 to = typeRepository.getById(idType);
-		int per = ot.getPercentage();
-		if(per ==0) {
-			per = to.getPercen();
-			}
-		id = ot.getId();
-		name = ot.getName();
-		phoneO = phone;
-		status = so.getStatus();
-		tName = to.getName();
-		p = per;
-		}
-		OutletDTO odDto = new OutletDTO(id, name, phoneO, status,tName, p );
-		ods.setData(odDto);
-		ods.setSuccess(msg);
-		OutletDTOData dd = new OutletDTOData(ods);
-		return dd;
-	}
+//	@Override
+//	public OutletDTOData findByPhone(String phone) {
+//		// TODO Auto-generated method 
+//		Outlet ot = outletRepository.findByPhone(phone);
+//		StatusOutlet so = null;
+//		TypeOutlet to = null;
+//		OutletDTOStatus ods = new OutletDTOStatus();
+//		String id ="";
+//		String name = "";
+//		String phoneO = "";
+//		String status ="";
+//		String tName  ="";
+//		int p = 0;
+//		boolean msg = false;
+//		if(!(ot == null)) {
+//			
+//		msg = true;
+////		List<OutletDTO> test = new ArrayList<>();
+//		int idStatus =ot.getStatus(); 
+//		int idType = ot.getType();
+////		Optional<StatusOutlet> oSo = statusRepository.findById(idStatus);
+////		if(oSo.isPresent()) {
+//		 so = statusRepository.getById(idStatus);
+//		 to = typeRepository.getById(idType);
+//		int per =0;
+//		if(per ==0) {
+//			per = to.getPercen();
+//			}
+//		id = ot.getId();
+//		name = ot.getName();
+//		phoneO = phone;
+//		status = so.getStatus();
+//		tName = to.getName();
+//		p = per;
+//		}
+//		OutletDTO odDto = new OutletDTO(id, name, phoneO, status,tName, p );
+//		ods.setData(odDto);
+//		ods.setSuccess(msg);
+//		OutletDTOData dd = new OutletDTOData(ods);
+//		return dd;
+//	}
 
 	
 	

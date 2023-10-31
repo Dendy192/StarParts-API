@@ -2,6 +2,8 @@ package com.robot.dao;
 
 import java.util.List;
 
+import com.robot.controller.DiscountsController;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +13,7 @@ public class OrderDAO {
 	private String customerId;
 	private String total;
 	private List<OrderDetailDAO> data;
+	private List<DiscountsDetailDAO> discount;
 	
 	public String getDate() {
 		return date;
@@ -42,6 +45,19 @@ public class OrderDAO {
 	public void setData(List<OrderDetailDAO> data) {
 		this.data = data;
 	}
+	
+	public List<DiscountsDetailDAO> getDiscount() {
+		return discount;
+	}
+	public void setDiscount(List<DiscountsDetailDAO> discount) {
+		this.discount = discount;
+	}
+	@Override
+	public String toString() {
+		return "OrderDAO [date=" + date + ", time=" + time + ", customerId=" + customerId + ", total=" + total
+				+ ", data=" + data + ", discount=" + discount + "]";
+	}
+	
 	
 	
 	

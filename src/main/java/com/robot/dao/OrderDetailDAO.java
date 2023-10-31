@@ -2,16 +2,18 @@ package com.robot.dao;
 
 public class OrderDetailDAO {
 	
-	private String itemName;
+	private String itemId;
 	private int qty;
 	private String itemHarga;
 	
-	public String getItemName() {
-		return itemName;
+	
+	public String getItemId() {
+		return itemId;
 	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
+	
 	public int getQty() {
 		return qty;
 	}
