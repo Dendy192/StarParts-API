@@ -9,7 +9,7 @@ import com.robot.dto.OutletDTOData;
 
 public interface OutletService {
 
-	OutletDTOData findByPhone(String phone);
+//	OutletDTOData findByPhone(String phone);
 //	List<Outlet> findAllOutlet();
 //	Optional<Outlet> findById(String id);
 //	Outlet saveOutlet(Outlet outlet);

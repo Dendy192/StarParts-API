@@ -94,6 +94,13 @@ public class Discount implements Serializable {
 	public void setDiscountEndTime(Time discountEndTime) {
 		this.discountEndTime = discountEndTime;
 	}
+
+	@Override
+	public String toString() {
+		return "Discount [discountId=" + discountId + ", discountName=" + discountName + ", discountType="
+				+ discountType + ", discountStartDate=" + discountStartDate + ", discountEndDate=" + discountEndDate
+				+ ", discountStartTime=" + discountStartTime + ", discountEndTime=" + discountEndTime + "]";
+	}
 	
 	
 	

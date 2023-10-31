@@ -1,6 +1,7 @@
 package com.robot.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +21,9 @@ public interface OutletRepository extends JpaRepository<Outlet, String>, OutletR
 //	+ "INNER JOIN \"SP_STATUS\" ss ON so.\"OUTLET_STATUS\" = ss.\"ID_STATUS\" "
 //	+ "INNER JOIN \"SP_TYPE_CUSTOMER\" stc ON so.\"OUTLET_TYPE\" = stc.\"ID_TYPE_CUSTOMER\" "
 //	+ "WHERE \"OUTLET_PHONE\" = ?1")
-	Outlet findByPhone(String phone);
+//	Outlet findByPhone(String phone);
+	Outlet findByPhone (String phone);
+//	Outlet findById (String id);
 	
 }
 

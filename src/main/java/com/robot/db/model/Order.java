@@ -32,6 +32,9 @@ public class Order implements Serializable {
 	@Column(name = "\"ORDER_TIME\"")
 	private Time time;
 	
+	@Column(name = "\"ORDER_STATUS\"")
+	private String status;
+	
 	public String getId() {
 		return id;
 	}
@@ -62,10 +65,17 @@ public class Order implements Serializable {
 	public void setTime(Time time) {
 		this.time = time;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", customerId=" + customerId + ", totalPrice=" + totalPrice + ", date=" + date
-				+ ", time=" + time + "]";
+				+ ", time=" + time + ", status=" + status + "]";
 	}
 	
 	

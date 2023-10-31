@@ -7,5 +7,5 @@ import com.robot.db.model.Discount;
 
 @Repository
 public interface DiscountsRepository extends JpaRepository<Discount, String> {
-
+	Discount findBydiscountName (String name);
 }

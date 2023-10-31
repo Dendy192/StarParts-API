@@ -51,8 +51,8 @@ public class Outlet implements Serializable {
 	@Column(name = "\"OUTLET_TYPE\"")
 	private int type;
 	
-	@Column(name="\"OUTLET_PERCENT\"")
-	private int percentage;
+	@Column(name="\"OUTLET_PLAFON\"")
+	private String plafon;
 
 	public String getId() {
 		return id;
@@ -102,13 +102,21 @@ public class Outlet implements Serializable {
 		this.type = type;
 	}
 
-	public int getPercentage() {
-		return percentage;
+	public String getPlafon() {
+		return plafon;
 	}
 
-	public void setPercentage(int percentage) {
-		this.percentage = percentage;
+	public void setPlafon(String plafon) {
+		this.plafon = plafon;
 	}
+
+	@Override
+	public String toString() {
+		return "Outlet [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", status=" + status
+				+ ", type=" + type + ", plafon=" + plafon + "]";
+	}
+
+	
 
 	
 	

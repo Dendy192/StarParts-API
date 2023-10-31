@@ -3,6 +3,7 @@ package com.robot.service.impl;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,12 +15,14 @@ import org.springframework.stereotype.Service;
 import com.robot.db.model.Discount;
 import com.robot.db.model.DiscountsDetail;
 import com.robot.db.model.Outlet;
+import com.robot.db.model.TypeOutlet;
 import com.robot.dto.DiscountsDTO;
 import com.robot.dto.DiscountsDTOData;
 import com.robot.entity.OutletEntity;
 import com.robot.repo.DiscountsDetailRepository;
 import com.robot.repo.DiscountsRepository;
 import com.robot.repo.OutletRepository;
+import com.robot.repo.TypeRepository;
 import com.robot.service.DiscountsService;
 
 import jakarta.persistence.EntityManager;
@@ -40,6 +43,9 @@ public class DiscountServiceImpl implements DiscountsService {
 	OutletRepository outletRepository;
 	
 	@Autowired
+	TypeRepository typeRepository;
+	
+	@Autowired
 	OutletEntity oE;
 	
 	@Override
@@ -49,20 +55,35 @@ public class DiscountServiceImpl implements DiscountsService {
 		java.util.Date currentDate = new java.util.Date();
 		LocalTime currentTime = LocalTime.now();
 		List<DiscountsDTOData> lDdtoD = new ArrayList<>();
-		Optional<List<Discount>> oLdc =Optional.of(discountsRepository.findAll());
+		Optional<List<Discount>> oLdc =Optional.ofNullable(discountsRepository.findAll());
 		boolean status = false;
+		Optional<Outlet> ooutlet = outletRepository.findById(id);
 		try {
+			if(ooutlet.isPresent()) {
+				Outlet outlet = ooutlet.get();
+				Optional<TypeOutlet> oto = typeRepository.findById(outlet.getType());
+				TypeOutlet to = oto.get();
+				DiscountsDTOData  ddtod1  = new DiscountsDTOData();
+				ddtod1.setName(to.getName());
+				ddtod1.setType("Outlet");
+				ddtod1.setAmmount(to.getPercen());
+				lDdtoD.add(ddtod1);
+			}
 		if(oLdc.isPresent()) {
 			List<Discount> lD = oLdc.get();
+//			System.out.println(id);
 			for(Discount dc : lD) {
+				System.out.println(dc.toString());
+				
 				if(isValidDateAndTime(dc, currentDate, currentTime)) {
+					System.out.println(dc.getDiscountId());
 					DiscountsDetail dd = discountsDetailRepository.findBydiscountDetailId(dc.getDiscountId());
 //					tambahin validasi nya di sini buat cek misalkan dia per toko misalkan depannya bdg atau 
 //					toko tertentu bikin rulesnya
 //					System.out.println("masuk sini");
 					DiscountsDTOData  ddtod  = new DiscountsDTOData();
 					if(dc.getDiscountType().equalsIgnoreCase("outlet")) {
-						String sql = "SELECT id, name, email, phone, status FROM Outlet";
+						String sql = "SELECT id, name, email, phone, status FROM Outlet WHERE "+dd.getDiscountDetailRules();
 						log.info(sql);
 //						System.out.println(lO);
 //						System.out.println("msuk sini");
@@ -71,7 +92,7 @@ public class DiscountServiceImpl implements DiscountsService {
 						for(Outlet ol : lO) {
 							if(ol.getId().equals(id)) {
 								ddtod.setName(dc.getDiscountName());
-								ddtod.setType(dc.getDiscountType());
+								ddtod.setType(dd.getDiscountDetailRules());
 								ddtod.setAmmount(dd.getDiscountDetailAmmount());
 								status = true;
 								lDdtoD.add(ddtod);

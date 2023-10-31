@@ -10,19 +10,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="\"SP_TYPE_CUSTOMER\"")
+@Table(name="\"SP_TYPE_OUTLET\"")
 public class TypeOutlet  implements Serializable{
 	
 private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="\"ID_TYPE_CUSTOMER\"")
+	@Column(name="\"TYPE_ID\"")
 	private int id;
 	
 	@Column(name = "\"TYPE_NAME\"")
 	private String name;
 
 	@Column(name = "\"TYPE_PERCENTAGE\"")
-	private int percen;
+	private String percen;
 
 	public int getId() {
 		return id;
@@ -40,11 +40,11 @@ private static final long serialVersionUID = 1L;
 		this.name = name;
 	}
 
-	public int getPercen() {
+	public String getPercen() {
 		return percen;
 	}
 
-	public void setPercen(int percen) {
+	public void setPercen(String percen) {
 		this.percen = percen;
 	}
 

@@ -1,111 +1,141 @@
-2023-10-12T12:46:21.035+07:00  INFO 9040 --- [restartedMain] com.robot.RobotApplication               : Starting RobotApplication using Java 17.0.7 with PID 9040 (C:\Users\dtiaw\git\StarParts-API\target\classes started by dtiaw in C:\Users\dtiaw\git\StarParts-API)
-2023-10-12T12:46:21.063+07:00  INFO 9040 --- [restartedMain] com.robot.RobotApplication               : No active profile set, falling back to 1 default profile: "default"
-2023-10-12T12:46:21.885+07:00  INFO 9040 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-12T12:46:21.886+07:00  INFO 9040 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-12T12:46:22.870+07:00  INFO 9040 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-12T12:46:23.014+07:00  INFO 9040 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 131 ms. Found 9 JPA repository interfaces.
-2023-10-12T12:46:24.143+07:00  INFO 9040 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3256 (http)
-2023-10-12T12:46:24.191+07:00  INFO 9040 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-12T12:46:24.192+07:00  INFO 9040 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
-2023-10-12T12:46:24.326+07:00  INFO 9040 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-12T12:46:24.327+07:00  INFO 9040 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2439 ms
-2023-10-12T12:46:24.544+07:00  INFO 9040 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-12T12:46:24.613+07:00  INFO 9040 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-12T12:46:25.004+07:00  INFO 9040 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-12T12:46:25.216+07:00  INFO 9040 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6ea63777
-2023-10-12T12:46:25.220+07:00  INFO 9040 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-12T12:46:25.265+07:00  INFO 9040 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-12T12:46:25.696+07:00 ERROR 9040 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not instantiate id generator [entity-name=com.robot.db.model.DiscountsDetail]
-2023-10-12T12:46:25.697+07:00  WARN 9040 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not instantiate id generator [entity-name=com.robot.db.model.DiscountsDetail]
-2023-10-12T12:46:25.699+07:00  INFO 9040 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-12T12:46:25.703+07:00  INFO 9040 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-10-12T12:46:25.707+07:00  INFO 9040 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2023-10-12T12:46:25.722+07:00  INFO 9040 --- [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2023-10-12T12:46:25.761+07:00 ERROR 9040 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not instantiate id generator [entity-name=com.robot.db.model.DiscountsDetail]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1752) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1132) ~[spring-context-6.0.5.jar:6.0.5]
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:907) ~[spring-context-6.0.5.jar:6.0.5]
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:584) ~[spring-context-6.0.5.jar:6.0.5]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.0.3.jar:3.0.3]
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-3.0.3.jar:3.0.3]
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434) ~[spring-boot-3.0.3.jar:3.0.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:310) ~[spring-boot-3.0.3.jar:3.0.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1304) ~[spring-boot-3.0.3.jar:3.0.3]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1293) ~[spring-boot-3.0.3.jar:3.0.3]
-	at com.robot.RobotApplication.main(RobotApplication.java:10) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-3.0.3.jar:3.0.3]
-Caused by: jakarta.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not instantiate id generator [entity-name=com.robot.db.model.DiscountsDetail]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-6.0.5.jar:6.0.5]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-6.0.5.jar:6.0.5]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352) ~[spring-orm-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1798) ~[spring-beans-6.0.5.jar:6.0.5]
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1748) ~[spring-beans-6.0.5.jar:6.0.5]
-	... 21 common frames omitted
-Caused by: org.hibernate.MappingException: Could not instantiate id generator [entity-name=com.robot.db.model.DiscountsDetail]
-	at org.hibernate.id.factory.internal.StandardIdentifierGeneratorFactory.createIdentifierGenerator(StandardIdentifierGeneratorFactory.java:222) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.mapping.SimpleValue.createIdentifierGenerator(SimpleValue.java:515) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.mapping.SimpleValue.createIdentifierGenerator(SimpleValue.java:372) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.internal.SessionFactoryImpl.lambda$new$1(SessionFactoryImpl.java:293) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179) ~[na:na]
-	at java.base/java.util.HashMap$ValueSpliterator.forEachRemaining(HashMap.java:1779) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150) ~[na:na]
-	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173) ~[na:na]
-	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) ~[na:na]
-	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596) ~[na:na]
-	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:415) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1423) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:66) ~[spring-orm-6.0.5.jar:6.0.5]
-	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376) ~[spring-orm-6.0.5.jar:6.0.5]
-	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-6.0.5.jar:6.0.5]
-	... 25 common frames omitted
-Caused by: org.hibernate.MappingException: The increment size of the [SP_DISCOUNTS_DETAIL_SEQ] sequence is set to [50] in the entity mapping while the associated database sequence increment size is [1].
-	at org.hibernate.id.enhanced.SequenceStyleGenerator.configure(SequenceStyleGenerator.java:218) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	at org.hibernate.id.factory.internal.StandardIdentifierGeneratorFactory.createIdentifierGenerator(StandardIdentifierGeneratorFactory.java:217) ~[hibernate-core-6.1.7.Final.jar:6.1.7.Final]
-	... 43 common frames omitted
-
-2023-10-12T12:46:57.556+07:00  INFO 17964 --- [restartedMain] com.robot.RobotApplication               : Starting RobotApplication using Java 17.0.7 with PID 17964 (C:\Users\dtiaw\git\StarParts-API\target\classes started by dtiaw in C:\Users\dtiaw\git\StarParts-API)
-2023-10-12T12:46:57.560+07:00  INFO 17964 --- [restartedMain] com.robot.RobotApplication               : No active profile set, falling back to 1 default profile: "default"
-2023-10-12T12:46:57.980+07:00  INFO 17964 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-10-12T12:46:57.981+07:00  INFO 17964 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-12T12:46:58.942+07:00  INFO 17964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-10-12T12:46:59.297+07:00  INFO 17964 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 336 ms. Found 9 JPA repository interfaces.
-2023-10-12T12:47:01.044+07:00  INFO 17964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3256 (http)
-2023-10-12T12:47:01.062+07:00  INFO 17964 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-12T12:47:01.062+07:00  INFO 17964 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
-2023-10-12T12:47:01.168+07:00  INFO 17964 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-12T12:47:01.169+07:00  INFO 17964 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3187 ms
-2023-10-12T12:47:01.409+07:00  INFO 17964 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-10-12T12:47:01.493+07:00  INFO 17964 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-10-12T12:47:01.955+07:00  INFO 17964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-10-12T12:47:02.193+07:00  INFO 17964 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6c731041
-2023-10-12T12:47:02.197+07:00  INFO 17964 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-10-12T12:47:02.248+07:00  INFO 17964 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-10-12T12:47:03.693+07:00  INFO 17964 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-10-12T12:47:03.713+07:00  INFO 17964 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-10-12T12:47:04.866+07:00  WARN 17964 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-10-12T12:47:05.366+07:00  INFO 17964 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-12T12:47:05.424+07:00  INFO 17964 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3256 (http) with context path ''
-2023-10-12T12:47:05.439+07:00  INFO 17964 --- [restartedMain] com.robot.RobotApplication               : Started RobotApplication in 8.596 seconds (process running for 10.498)
-2023-10-12T12:47:18.495+07:00  INFO 17964 --- [RMI TCP Connection(8)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2023-10-12T12:47:18.536+07:00  INFO 17964 --- [RMI TCP Connection(8)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
-2023-10-12T12:47:18.549+07:00  INFO 17964 --- [RMI TCP Connection(8)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-10-12T12:47:18.556+07:00  INFO 17964 --- [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-10-12T12:47:18.568+07:00  INFO 17964 --- [RMI TCP Connection(8)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-28T01:22:37.823+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : Starting RobotApplication using Java 17.0.7 with PID 19732 (C:\Users\dtiaw\git\StarParts-API\target\classes started by dtiaw in C:\Users\dtiaw\git\StarParts-API)
+2023-10-28T01:22:37.841+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T01:22:38.428+07:00  INFO 19732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-28T01:22:38.429+07:00  INFO 19732 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-28T01:22:39.690+07:00  INFO 19732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T01:22:39.881+07:00  INFO 19732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 173 ms. Found 11 JPA repository interfaces.
+2023-10-28T01:22:41.182+07:00  INFO 19732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3256 (http)
+2023-10-28T01:22:41.203+07:00  INFO 19732 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T01:22:41.204+07:00  INFO 19732 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-10-28T01:22:41.345+07:00  INFO 19732 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T01:22:41.346+07:00  INFO 19732 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2916 ms
+2023-10-28T01:22:41.611+07:00  INFO 19732 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T01:22:41.715+07:00  INFO 19732 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-10-28T01:22:42.253+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-28T01:22:42.572+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5ec3da0b
+2023-10-28T01:22:42.575+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-28T01:22:42.642+07:00  INFO 19732 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-10-28T01:22:44.307+07:00  INFO 19732 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T01:22:44.330+07:00  INFO 19732 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T01:22:45.722+07:00  WARN 19732 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T01:22:46.394+07:00  INFO 19732 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T01:22:46.463+07:00  INFO 19732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3256 (http) with context path ''
+2023-10-28T01:22:46.479+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : Started RobotApplication in 9.571 seconds (process running for 11.433)
+2023-10-28T01:28:31.456+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-28T01:28:31.457+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-28T01:28:31.459+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-10-28T01:50:28.333+07:00  INFO 19732 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-10-28T01:50:28.362+07:00  INFO 19732 --- [Thread-5] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T01:50:28.367+07:00  INFO 19732 --- [Thread-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-28T01:50:28.384+07:00  INFO 19732 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T01:50:28.395+07:00  INFO 19732 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-10-28T01:50:28.402+07:00  INFO 19732 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-10-28T01:50:28.594+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : Starting RobotApplication using Java 17.0.7 with PID 19732 (C:\Users\dtiaw\git\StarParts-API\target\classes started by dtiaw in C:\Users\dtiaw\git\StarParts-API)
+2023-10-28T01:50:28.595+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T01:50:29.126+07:00  INFO 19732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T01:50:29.188+07:00  INFO 19732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 11 JPA repository interfaces.
+2023-10-28T01:50:29.371+07:00  INFO 19732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3256 (http)
+2023-10-28T01:50:29.372+07:00  INFO 19732 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T01:50:29.372+07:00  INFO 19732 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-10-28T01:50:29.415+07:00  INFO 19732 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T01:50:29.416+07:00  INFO 19732 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 797 ms
+2023-10-28T01:50:29.493+07:00  INFO 19732 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T01:50:29.516+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-10-28T01:50:29.591+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@40005397
+2023-10-28T01:50:29.592+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-10-28T01:50:29.606+07:00  INFO 19732 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-10-28T01:50:29.891+07:00  INFO 19732 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T01:50:29.892+07:00  INFO 19732 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T01:50:30.423+07:00  WARN 19732 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T01:50:30.607+07:00  INFO 19732 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T01:50:30.628+07:00  INFO 19732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3256 (http) with context path ''
+2023-10-28T01:50:30.637+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : Started RobotApplication in 2.138 seconds (process running for 1675.591)
+2023-10-28T01:50:30.642+07:00  INFO 19732 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-28T01:58:27.450+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-28T01:58:27.450+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-28T01:58:27.452+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-10-28T02:09:04.274+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:09:04.339+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:09:04.346+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:11:21.621+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:11:21.624+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:11:21.633+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:12:03.919+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:12:03.921+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:12:03.927+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:15:45.259+07:00  INFO 19732 --- [http-nio-3256-exec-3] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:15:45.262+07:00  INFO 19732 --- [http-nio-3256-exec-3] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:15:45.267+07:00  INFO 19732 --- [http-nio-3256-exec-3] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:17:41.853+07:00  INFO 19732 --- [http-nio-3256-exec-7] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:17:41.856+07:00  INFO 19732 --- [http-nio-3256-exec-7] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:17:41.864+07:00  INFO 19732 --- [http-nio-3256-exec-7] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:19:38.062+07:00  INFO 19732 --- [http-nio-3256-exec-2] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:19:38.064+07:00  INFO 19732 --- [http-nio-3256-exec-2] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:19:38.070+07:00  INFO 19732 --- [http-nio-3256-exec-2] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:21:22.784+07:00  INFO 19732 --- [http-nio-3256-exec-6] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:21:22.786+07:00  INFO 19732 --- [http-nio-3256-exec-6] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:21:22.791+07:00  INFO 19732 --- [http-nio-3256-exec-6] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:22:52.627+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:22:52.629+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:22:52.633+07:00  INFO 19732 --- [http-nio-3256-exec-9] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:24:04.667+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:24:04.668+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:24:04.675+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:25:49.902+07:00  INFO 19732 --- [http-nio-3256-exec-10] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:25:49.904+07:00  INFO 19732 --- [http-nio-3256-exec-10] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:25:49.909+07:00  INFO 19732 --- [http-nio-3256-exec-10] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:26:51.666+07:00  INFO 19732 --- [http-nio-3256-exec-4] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:26:51.668+07:00  INFO 19732 --- [http-nio-3256-exec-4] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:26:51.672+07:00  INFO 19732 --- [http-nio-3256-exec-4] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:31:40.993+07:00  INFO 19732 --- [http-nio-3256-exec-3] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:31:40.994+07:00  INFO 19732 --- [http-nio-3256-exec-3] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:31:40.999+07:00  INFO 19732 --- [http-nio-3256-exec-3] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:33:14.695+07:00  INFO 19732 --- [http-nio-3256-exec-1] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:33:14.697+07:00  INFO 19732 --- [http-nio-3256-exec-1] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:33:14.704+07:00  INFO 19732 --- [http-nio-3256-exec-1] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:34:50.602+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:34:50.604+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:34:50.609+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:36:28.897+07:00  INFO 19732 --- [http-nio-3256-exec-6] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:36:28.899+07:00  INFO 19732 --- [http-nio-3256-exec-6] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:36:28.905+07:00  INFO 19732 --- [http-nio-3256-exec-6] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE "OUTLET_ID" = 'BDG%'
+2023-10-28T02:49:44.876+07:00  INFO 19732 --- [http-nio-3256-exec-7] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:49:44.878+07:00  INFO 19732 --- [http-nio-3256-exec-7] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:54:26.800+07:00  INFO 19732 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-10-28T02:54:26.822+07:00  INFO 19732 --- [Thread-7] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T02:54:26.824+07:00  INFO 19732 --- [Thread-7] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-28T02:54:26.836+07:00  INFO 19732 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T02:54:26.839+07:00  INFO 19732 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-10-28T02:54:26.842+07:00  INFO 19732 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-10-28T02:54:27.024+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : Starting RobotApplication using Java 17.0.7 with PID 19732 (C:\Users\dtiaw\git\StarParts-API\target\classes started by dtiaw in C:\Users\dtiaw\git\StarParts-API)
+2023-10-28T02:54:27.025+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : No active profile set, falling back to 1 default profile: "default"
+2023-10-28T02:54:27.444+07:00  INFO 19732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-28T02:54:27.509+07:00  INFO 19732 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 64 ms. Found 11 JPA repository interfaces.
+2023-10-28T02:54:27.926+07:00  INFO 19732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 3256 (http)
+2023-10-28T02:54:27.927+07:00  INFO 19732 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-28T02:54:27.927+07:00  INFO 19732 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.5]
+2023-10-28T02:54:27.969+07:00  INFO 19732 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-28T02:54:27.970+07:00  INFO 19732 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 932 ms
+2023-10-28T02:54:28.038+07:00  INFO 19732 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-28T02:54:28.060+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-10-28T02:54:28.138+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@4d3ffc69
+2023-10-28T02:54:28.139+07:00  INFO 19732 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-10-28T02:54:28.152+07:00  INFO 19732 --- [restartedMain] SQL dialect                              : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-10-28T02:54:28.498+07:00  INFO 19732 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-28T02:54:28.499+07:00  INFO 19732 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T02:54:29.020+07:00  WARN 19732 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-28T02:54:29.185+07:00  INFO 19732 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-28T02:54:29.207+07:00  INFO 19732 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 3256 (http) with context path ''
+2023-10-28T02:54:29.218+07:00  INFO 19732 --- [restartedMain] com.robot.RobotApplication               : Started RobotApplication in 2.251 seconds (process running for 5514.171)
+2023-10-28T02:54:29.221+07:00  INFO 19732 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-28T02:55:35.742+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-28T02:55:35.743+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-28T02:55:35.745+07:00  INFO 19732 --- [http-nio-3256-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-10-28T02:55:57.944+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : SELECT id, name, email, phone, status FROM Outlet WHERE id LIKE 'BDG%'
+2023-10-28T02:55:57.947+07:00  INFO 19732 --- [http-nio-3256-exec-5] c.r.service.impl.DiscountServiceImpl     : Present data
+2023-10-28T02:57:02.519+07:00  INFO 19732 --- [RMI TCP Connection(110)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2023-10-28T02:57:02.538+07:00  INFO 19732 --- [RMI TCP Connection(110)-127.0.0.1] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-10-28T02:57:02.539+07:00  INFO 19732 --- [RMI TCP Connection(110)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-10-28T02:57:02.549+07:00  INFO 19732 --- [RMI TCP Connection(110)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-10-28T02:57:02.551+07:00  INFO 19732 --- [RMI TCP Connection(110)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-10-28T02:57:02.564+07:00  INFO 19732 --- [RMI TCP Connection(110)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
