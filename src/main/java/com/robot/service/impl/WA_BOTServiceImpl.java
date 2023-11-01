@@ -68,7 +68,7 @@ public class WA_BOTServiceImpl implements WA_BOTService {
 				wabdd.setId(wab.getBOT_WA_ID());
 				wabdd.setName(wab.getBOT_WA_NAME());
 				wabdd.setPhone(wab.getBOT_WA_PHONE());
-				wabdd.setPhone(wab.getBOT_WA_DISCOUNT());
+				wabdd.setDiscount(wab.getBOT_WA_DISCOUNT());
 				wabdd.setStatus(status);
 				wabdd.setType(wab.getBOT_WA_TYPE());
 				wabd.setStatus(statusMessage);

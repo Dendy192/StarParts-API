@@ -60,8 +60,10 @@ public class WA_BOT implements Serializable {
 	public String getBOT_WA_PHONE() {
 		return phone;
 	}
-	public void setBOT_WA_PHONE(String bOT_WA_PHONE) {
-		phone = bOT_WA_PHONE;
+
+	public void setBOT_WA_PHONE(String Phone) {
+		phone = Phone;
+
 	}
 	public String getBOT_WA_DISCOUNT() {
 		return BOT_WA_DISCOUNT;
