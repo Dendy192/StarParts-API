@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 import org.apache.log4j.Logger;
 
+import com.jcraft.jsch.ConfigRepository.Config;
+
 public class DBEngine {
 	private static Logger log = Logger.getLogger(DBEngine.class.getName());
 	private static Connection conn;
@@ -23,7 +25,10 @@ public class DBEngine {
 	public static Connection getConnection() {
 		 Connection conn = null;
 	        try {
-	            conn = DriverManager.getConnection(Database.getUrl(), Database.getUser(), Database.getPwd());
+	        	String url = "jdbc:postgresql://localhost:5432/StarParts";
+	        	String id = "postgres";
+	        	String pass = "Testing1";
+	            conn = DriverManager.getConnection(url, id, pass);
 //	            System.out.println("Connected to the PostgreSQL server successfully.");
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());

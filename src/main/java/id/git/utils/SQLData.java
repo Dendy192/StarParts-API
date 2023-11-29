@@ -16,7 +16,50 @@ import id.git.conn.DBEngine;
 
 public class SQLData {
 	private static Logger log = Logger.getLogger(SQLData.class.getName());
+	public static List<String[]> getLastOrder(String id){
+		String sql ="SELECT si.\"ITEM_ID\", si.\"ITEM_BRAND\", si.\"ITEM_SUB_BRAND\", si.\"ITEM_JENIS\", sdo.\"ORDER_DETAIL_QTY\" "
+				+"FROM \"SP_ORDER_DETAIL\" sdo "
+				+"JOIN \"SP_ITEMS\" si ON sdo.\"ORDER_DETAIL_ITEM\" = si.\"ITEM_ID\" "
+				+"WHERE \"ORDER_ID\" ='"+id+"'";
+		return execute(sql);
+	}
+	public static String getOrderId(String id) {
+		String result = "";
+		String sql = "SELECT \"ORDER_ID\" FROM \"SP_ORDER\" WHERE \"ORDER_CUSTOMER_ID\" ='"+id+"' ORDER BY \"ORDER_DATE\" DESC, \"ORDER_TIME\" DESC";
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = DBEngine.getConnection();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				result = rs.getString(1);
+			}else {
+				result ="false";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (ps != null) {
+					ps.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 	public static HashMap<String, String> getParameter() {
 		HashMap<String, String> result = new HashMap<String, String>();
 		Connection conn = null;
@@ -525,6 +568,48 @@ public class SQLData {
 				e.printStackTrace();
 			}
 		}
+	}
+	public static List<String[]> execute(String sql) {
+		List resultList = new ArrayList();
+		Connection conn = DBEngine.getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		if (conn != null) {
+			try {
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				if (!rs.next()) {
+					System.out.println("no data found");
+				} else {
+					int columnCount = rs.getMetaData().getColumnCount();
+					do {
+						String[] row = new String[columnCount];
+						for (int i = 0; i < row.length; ++i) {
+//							System.out.println(rs.getString(i + 1));
+							row[i] = String.valueOf(rs.getString(i + 1));
+						}
+						resultList.add(row);
+					}
+
+					while (rs.next());
+					System.out.println("[OK] " + resultList.size() + " Rows and " + columnCount + " Column");
+
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+//				System.out.println(e.getMessage());
+			} finally {
+				try {
+					rs.close();
+					ps.close();
+					conn.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+		}
+		return resultList;
 	}
 
 }

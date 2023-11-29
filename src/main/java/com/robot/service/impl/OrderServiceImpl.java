@@ -2,6 +2,7 @@ package com.robot.service.impl;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,12 +19,16 @@ import com.robot.db.model.Order;
 import com.robot.db.model.OrderDetail;
 import com.robot.db.model.OrderDiscounts;
 import com.robot.dto.OrderDTO;
+import com.robot.dto.OrderLastDTO;
+import com.robot.dto.OrderLastDTOData;
 import com.robot.repo.DiscountsDetailRepository;
 import com.robot.repo.DiscountsRepository;
 import com.robot.repo.OrderDetailRepository;
 import com.robot.repo.OrderDiscountsRepository;
 import com.robot.repo.OrderRepository;
 import com.robot.service.OrderService;
+
+import id.git.utils.SQLData;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -177,6 +182,36 @@ public class OrderServiceImpl implements OrderService {
 		odt.setStatus(status);
 		odt.setMessages(message);
 		return odt;
+	}
+
+	@Override
+	public OrderLastDTO getLastOrder(String id) {
+		// TODO Auto-generated method stub
+		String idOrder = SQLData.getOrderId(id);
+		List<OrderLastDTOData> oldtp = new ArrayList<>();
+		OrderLastDTO oldt = new OrderLastDTO(); 
+		boolean result = false;
+		if(idOrder.equals("false")) {
+			oldt.setStatus(result);
+		}else {
+			result = true;
+			List<String[]> getItem = SQLData.getLastOrder(idOrder);
+			for(int i =0; i< getItem.size(); i++) {
+				OrderLastDTOData old = new OrderLastDTOData();
+				String[] items = getItem.get(i);
+				if(items[1].equals("FDR")) {
+					old.setItemCategory(items[3]);
+				}else {
+					old.setItemCategory(items[2]);
+				}
+				old.setItemId(items[0]);
+				old.setItemQty(items[4]);
+				oldtp.add(old);
+			}
+			oldt.setStatus(result);
+			oldt.setData(oldtp);
+		}
+		return oldt;
 	}
 
 }
