@@ -10,11 +10,13 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.robot.dao.DiscountsDetailDAO;
 import com.robot.dao.OrderDAO;
 import com.robot.dao.OrderDetailDAO;
 import com.robot.db.model.Discount;
+import com.robot.db.model.Items;
 import com.robot.db.model.Order;
 import com.robot.db.model.OrderDetail;
 import com.robot.db.model.OrderDiscounts;
@@ -23,6 +25,7 @@ import com.robot.dto.OrderLastDTO;
 import com.robot.dto.OrderLastDTOData;
 import com.robot.repo.DiscountsDetailRepository;
 import com.robot.repo.DiscountsRepository;
+import com.robot.repo.ItemsRepository;
 import com.robot.repo.OrderDetailRepository;
 import com.robot.repo.OrderDiscountsRepository;
 import com.robot.repo.OrderRepository;
@@ -45,7 +48,11 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	OrderDiscountsRepository orderDiscountsRepository;
 	
+	@Autowired
+	ItemsRepository itemsRepository;
+	
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public OrderDTO insertOrder(OrderDAO od) {
 		// TODO Auto-generated method stub
 		OrderDTO odt = new OrderDTO();
@@ -57,9 +64,11 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			System.out.println(oodo.isPresent());
 			if(oodo.isPresent()) {
-				
-				
 				List<OrderDetailDAO> orderDetailDao = od.getData();
+				if (!isStockAvailable(orderDetailDao)) {
+	                message = "Out of Stock";
+	                throw new RuntimeException("Out of Stock");// ini trigger rollback
+	            } else {
 				Order order = new Order();
 				String date = changeDateFormat(od.getDate());
 				String id = generateNumber(date);
@@ -114,8 +123,9 @@ public class OrderServiceImpl implements OrderService {
 				System.out.println("ke sini");
 				status = true;
 				message = "success";
+	            }
 			}
-		}catch (Exception e) {
+		}catch (Exception e) { //ini juga jadi trigger rollback
 			// TODO: handle exception
 			message = e.getMessage();
 			e.printStackTrace();
@@ -125,7 +135,36 @@ public class OrderServiceImpl implements OrderService {
 		odt.setMessages(message);
 		return odt;
 	}
+		
+	private boolean isStockAvailable(List<OrderDetailDAO> orderDetails) {
+		 for (OrderDetailDAO odao : orderDetails) {
+		     if (!isItemStockAvailable(odao.getItemId(), odao.getQty())) {
+		         return false;
+		    }
+		}
+		return true;
+	}
 	
+	private boolean isItemStockAvailable(String itemId, int qty) {
+	    try {
+	        Items item = itemsRepository.findById(itemId)
+	        		.orElseThrow(() -> new RuntimeException("Item not found with ID: " + itemId));
+
+	        synchronized (item) {
+	            if (item.getItemStock() >= qty) {
+	                item.setItemStock(item.getItemStock() - qty);
+	                itemsRepository.save(item);
+	                return true;
+	            } else {
+	                return false;
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
 	public String generateNumber(String date) {
 		Random randomID = new Random();
         StringBuilder sb = new StringBuilder();
@@ -186,7 +225,6 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public OrderLastDTO getLastOrder(String id) {
-		// TODO Auto-generated method stub
 		String idOrder = SQLData.getOrderId(id);
 		List<OrderLastDTOData> oldtp = new ArrayList<>();
 		OrderLastDTO oldt = new OrderLastDTO(); 
@@ -213,5 +251,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 		return oldt;
 	}
+	
+	
 
 }
