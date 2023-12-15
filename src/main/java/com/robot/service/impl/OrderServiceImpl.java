@@ -2,6 +2,7 @@ package com.robot.service.impl;
 
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -9,21 +10,28 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.robot.dao.DiscountsDetailDAO;
 import com.robot.dao.OrderDAO;
 import com.robot.dao.OrderDetailDAO;
 import com.robot.db.model.Discount;
+import com.robot.db.model.Items;
 import com.robot.db.model.Order;
 import com.robot.db.model.OrderDetail;
 import com.robot.db.model.OrderDiscounts;
 import com.robot.dto.OrderDTO;
+import com.robot.dto.OrderLastDTO;
+import com.robot.dto.OrderLastDTOData;
 import com.robot.repo.DiscountsDetailRepository;
 import com.robot.repo.DiscountsRepository;
+import com.robot.repo.ItemsRepository;
 import com.robot.repo.OrderDetailRepository;
 import com.robot.repo.OrderDiscountsRepository;
 import com.robot.repo.OrderRepository;
 import com.robot.service.OrderService;
+
+import id.git.utils.SQLData;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -40,7 +48,11 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	OrderDiscountsRepository orderDiscountsRepository;
 	
+	@Autowired
+	ItemsRepository itemsRepository;
+	
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public OrderDTO insertOrder(OrderDAO od) {
 		// TODO Auto-generated method stub
 		OrderDTO odt = new OrderDTO();
@@ -52,9 +64,11 @@ public class OrderServiceImpl implements OrderService {
 		try {
 			System.out.println(oodo.isPresent());
 			if(oodo.isPresent()) {
-				
-				
 				List<OrderDetailDAO> orderDetailDao = od.getData();
+				if (!isStockAvailable(orderDetailDao)) {
+	                message = "Out of Stock";
+	                throw new RuntimeException("Out of Stock");// ini trigger rollback
+	            } else {
 				Order order = new Order();
 				String date = changeDateFormat(od.getDate());
 				String id = generateNumber(date);
@@ -109,8 +123,9 @@ public class OrderServiceImpl implements OrderService {
 				System.out.println("ke sini");
 				status = true;
 				message = "success";
+	            }
 			}
-		}catch (Exception e) {
+		}catch (Exception e) { //ini juga jadi trigger rollback
 			// TODO: handle exception
 			message = e.getMessage();
 			e.printStackTrace();
@@ -120,7 +135,36 @@ public class OrderServiceImpl implements OrderService {
 		odt.setMessages(message);
 		return odt;
 	}
+		
+	private boolean isStockAvailable(List<OrderDetailDAO> orderDetails) {
+		 for (OrderDetailDAO odao : orderDetails) {
+		     if (!isItemStockAvailable(odao.getItemId(), odao.getQty())) {
+		         return false;
+		    }
+		}
+		return true;
+	}
 	
+	private boolean isItemStockAvailable(String itemId, int qty) {
+	    try {
+	        Items item = itemsRepository.findById(itemId)
+	        		.orElseThrow(() -> new RuntimeException("Item not found with ID: " + itemId));
+
+	        synchronized (item) {
+	            if (item.getItemStock() >= qty) {
+	                item.setItemStock(item.getItemStock() - qty);
+	                itemsRepository.save(item);
+	                return true;
+	            } else {
+	                return false;
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+
 	public String generateNumber(String date) {
 		Random randomID = new Random();
         StringBuilder sb = new StringBuilder();
@@ -178,5 +222,36 @@ public class OrderServiceImpl implements OrderService {
 		odt.setMessages(message);
 		return odt;
 	}
+
+	@Override
+	public OrderLastDTO getLastOrder(String id) {
+		String idOrder = SQLData.getOrderId(id);
+		List<OrderLastDTOData> oldtp = new ArrayList<>();
+		OrderLastDTO oldt = new OrderLastDTO(); 
+		boolean result = false;
+		if(idOrder.equals("false")) {
+			oldt.setStatus(result);
+		}else {
+			result = true;
+			List<String[]> getItem = SQLData.getLastOrder(idOrder);
+			for(int i =0; i< getItem.size(); i++) {
+				OrderLastDTOData old = new OrderLastDTOData();
+				String[] items = getItem.get(i);
+				if(items[1].equals("FDR")) {
+					old.setItemCategory(items[3]);
+				}else {
+					old.setItemCategory(items[2]);
+				}
+				old.setItemId(items[0]);
+				old.setItemQty(items[4]);
+				oldtp.add(old);
+			}
+			oldt.setStatus(result);
+			oldt.setData(oldtp);
+		}
+		return oldt;
+	}
+	
+	
 
 }

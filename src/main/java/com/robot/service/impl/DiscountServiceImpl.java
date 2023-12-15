@@ -92,7 +92,7 @@ public class DiscountServiceImpl implements DiscountsService {
 						for(Outlet ol : lO) {
 							if(ol.getId().equals(id)) {
 								ddtod.setName(dc.getDiscountName());
-								ddtod.setType(dd.getDiscountDetailRules());
+								ddtod.setType(dc.getDiscountType());
 								ddtod.setAmmount(dd.getDiscountDetailAmmount());
 								status = true;
 								lDdtoD.add(ddtod);
@@ -104,7 +104,7 @@ public class DiscountServiceImpl implements DiscountsService {
 						
 					}else {						
 						ddtod.setName(dc.getDiscountName());
-						ddtod.setType(dc.getDiscountType());
+						ddtod.setType(dd.getDiscountDetailRules());
 						ddtod.setAmmount(dd.getDiscountDetailAmmount());
 						status = true;
 						lDdtoD.add(ddtod);

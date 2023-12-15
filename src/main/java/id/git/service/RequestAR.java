@@ -7,7 +7,7 @@ public class RequestAR {
 
 	public String request(String id, String name, String phone) {
 		// TODO Auto-generated constructor stub
-		Config.init();
+		
 		String result = "";
 //		GetAPIData gap = new GetAPIData();
 //		String test = gap.getInvoice(id);
