@@ -45,7 +45,7 @@ public class DiscountsController {
 				Discount dsc = discountsRepository.findBydiscountName(dda.getName());				
 			}
 			
-		}
+		}kk
 		
 		return true;
 	}
