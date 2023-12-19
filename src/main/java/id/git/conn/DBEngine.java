@@ -25,7 +25,7 @@ public class DBEngine {
 	public static Connection getConnection() {
 		 Connection conn = null;
 	        try {
-	        	String url = "jdbc:postgresql://localhost:5432/StarParts";
+	        	String url = "jdbc:postgresql://192.168.3.130:5432/StarParts";
 	        	String id = "postgres";
 	        	String pass = "Testing1";
 	            conn = DriverManager.getConnection(url, id, pass);
