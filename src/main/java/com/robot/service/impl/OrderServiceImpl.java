@@ -4,7 +4,9 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -22,6 +24,7 @@ import com.robot.db.model.OrderDetail;
 import com.robot.db.model.OrderDiscounts;
 import com.robot.dto.OrderDTO;
 import com.robot.dto.OrderDetailDTO;
+import com.robot.dto.OrderDetailDataDTO;
 import com.robot.dto.OrderLastDTO;
 import com.robot.dto.OrderLastDTOData;
 import com.robot.repo.DiscountsDetailRepository;
@@ -266,43 +269,86 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 	
-    @Override
-    public List<OrderDetailDTO> getOrdersAndDetails(String customerId, String status) {
-        List<OrderDetailDTO> orderDTOList = new ArrayList<>();
+//    @Override
+//    public List<OrderDetailDTO> getOrdersAndDetails(String customerId, String status) {
+//        List<OrderDetailDTO> orderDTOList = new ArrayList<>();
+//
+//        List<Order> orders;
+//        if (customerId != null && status != null) {
+//            orders = orderRepository.findByCustomerIdAndStatus(customerId, status);
+//        } else if (customerId != null) {
+//            orders = orderRepository.findByCustomerId(customerId);
+//        } else if (status != null) {
+//            orders = orderRepository.findByStatus(status);
+//        } else {
+//            orders = orderRepository.findAll();
+//        }
+//
+//        for (Order order : orders) {
+//            List<OrderDetail> orderDetails = orderDetailRepository.findByOrderId(order.getId());
+//
+//            for (OrderDetail orderDetail : orderDetails) {
+//                OrderDetailDTO orderDTO = new OrderDetailDTO();
+//                orderDTO.setOrderId(order.getId());
+//                orderDTO.setCustomerId(order.getCustomerId());
+//                orderDTO.setTotalPrice(order.getTotalPrice());
+//                orderDTO.setDate(order.getDate());
+//                orderDTO.setTime(order.getTime());
+//                orderDTO.setStatus(order.getStatus());
+//
+//                orderDTO.setOrderDetailId(orderDetail.getOrderDetailId());
+//                orderDTO.setOrderDetailItem(orderDetail.getOrderDetailItem());
+//                orderDTO.setOrderDetailQty(orderDetail.getOrderDetailQty());
+//                orderDTO.setOrderDetailPrice(orderDetail.getOrderDetailPrice());
+//
+//                orderDTOList.add(orderDTO);
+//            }
+//        }
+//
+//        return orderDTOList;
+//    }
 
-        List<Order> orders;
-        if (customerId != null && status != null) {
-            orders = orderRepository.findByCustomerIdAndStatus(customerId, status);
-        } else if (customerId != null) {
-            orders = orderRepository.findByCustomerId(customerId);
-        } else if (status != null) {
-            orders = orderRepository.findByStatus(status);
-        } else {
-            orders = orderRepository.findAll();
-        }
+	@Override
+	public List<OrderDetailDTO> getOrdersAndDetails(String customerId, String status) {
+	    List<OrderDetailDTO> orderDTOList = new ArrayList<>();
 
-        for (Order order : orders) {
-            List<OrderDetail> orderDetails = orderDetailRepository.findByOrderId(order.getId());
+	    List<Order> orders;
+	    if (customerId != null && status != null) {
+	        orders = orderRepository.findByCustomerIdAndStatus(customerId, status);
+	    } else if (customerId != null) {
+	        orders = orderRepository.findByCustomerId(customerId);
+	    } else if (status != null) {
+	        orders = orderRepository.findByStatus(status);
+	    } else {
+	        orders = orderRepository.findAll();
+	    }
 
-            for (OrderDetail orderDetail : orderDetails) {
-                OrderDetailDTO orderDTO = new OrderDetailDTO();
-                orderDTO.setOrderId(order.getId());
-                orderDTO.setCustomerId(order.getCustomerId());
-                orderDTO.setTotalPrice(order.getTotalPrice());
-                orderDTO.setDate(order.getDate());
-                orderDTO.setTime(order.getTime());
-                orderDTO.setStatus(order.getStatus());
+	    for (Order order : orders) {
+	        List<OrderDetail> orderDetails = orderDetailRepository.findByOrderId(order.getId());
 
-                orderDTO.setOrderDetailId(orderDetail.getOrderDetailId());
-                orderDTO.setOrderDetailItem(orderDetail.getOrderDetailItem());
-                orderDTO.setOrderDetailQty(orderDetail.getOrderDetailQty());
-                orderDTO.setOrderDetailPrice(orderDetail.getOrderDetailPrice());
+	        OrderDetailDTO orderDTO = new OrderDetailDTO();
+	        orderDTO.setOrderId(order.getId());
+	        orderDTO.setCustomerId(order.getCustomerId());
+	        orderDTO.setTotalPrice(order.getTotalPrice());
+	        orderDTO.setDate(order.getDate());
+	        orderDTO.setTime(order.getTime());
+	        orderDTO.setStatus(order.getStatus());
 
-                orderDTOList.add(orderDTO);
-            }
-        }
+	        List<OrderDetailDataDTO> detailsList = new ArrayList<>();
+	        for (OrderDetail orderDetail : orderDetails) {
+	            OrderDetailDataDTO detailDTO = new OrderDetailDataDTO();
+	            detailDTO.setOrderDetailId(orderDetail.getOrderDetailId());
+	            detailDTO.setOrderDetailItem(orderDetail.getOrderDetailItem());
+	            detailDTO.setOrderDetailQty(orderDetail.getOrderDetailQty());
+	            detailDTO.setOrderDetailPrice(orderDetail.getOrderDetailPrice());
 
-        return orderDTOList;
-    }
+	            detailsList.add(detailDTO);
+	        }
+	        orderDTO.setDetails(detailsList);
+	        orderDTOList.add(orderDTO);
+	    }
+
+	    return orderDTOList;
+	}
 
 }
