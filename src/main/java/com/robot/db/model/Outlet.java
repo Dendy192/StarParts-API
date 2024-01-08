@@ -19,39 +19,39 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="\"SP_OUTLET\"")
+@Table(name = "\"SP_OUTLET\"")
 public class Outlet implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="\"OUTLET_ID\"")
+	@Column(name = "\"OUTLET_ID\"")
 	private String id;
-	
-	@Column(name="\"OUTLET_NAME\"")
+
+	@Column(name = "\"OUTLET_NAME\"")
 	private String name;
 
-	@Column(name="\"OUTLET_EMAIL\"")
+	@Column(name = "\"OUTLET_EMAIL\"")
 	private String email;
 
-	@Column(name="\"OUTLET_PHONE\"")
+	@Column(name = "\"OUTLET_PHONE\"")
 	private String phone;
-	
-//	@JoinColumn(name ="\"ID_STATUS\"")
-	@Column(name="\"OUTLET_STATUS\"")
+
+	// @JoinColumn(name ="\"ID_STATUS\"")
+	@Column(name = "\"OUTLET_STATUS\"")
 	private int status;
-//	@JoinTable(name = "\"SP_STATUS\"",
-//			joinColumns = {@JoinColumn(name ="\"OUTLET_STATUS\"")},
-//			inverseJoinColumns = {@JoinColumn(name="\"ID_STATUS\"")})
-//	@OneToMany(targetEntity = StatusOutlet.class, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "os", referencedColumnName = "")
-//	@OneToMany(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "")
-//	private StatusOutlet OUTLET_STATUS;
-	
+	// @JoinTable(name = "\"SP_STATUS\"",
+	// joinColumns = {@JoinColumn(name ="\"OUTLET_STATUS\"")},
+	// inverseJoinColumns = {@JoinColumn(name="\"ID_STATUS\"")})
+	// @OneToMany(targetEntity = StatusOutlet.class, cascade = CascadeType.ALL)
+	// @JoinColumn(name = "os", referencedColumnName = "")
+	// @OneToMany(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "")
+	// private StatusOutlet OUTLET_STATUS;
+
 	@Column(name = "\"OUTLET_TYPE\"")
 	private int type;
-	
-	@Column(name="\"OUTLET_PLAFON\"")
+
+	@Column(name = "\"OUTLET_PLAFON\"")
 	private String plafon;
 
 	public String getId() {
@@ -115,11 +115,5 @@ public class Outlet implements Serializable {
 		return "Outlet [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", status=" + status
 				+ ", type=" + type + ", plafon=" + plafon + "]";
 	}
-
-	
-
-	
-	
-	
 
 }
