@@ -2,6 +2,7 @@ package com.robot.dto;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import lombok.Data;
 
@@ -13,11 +14,7 @@ public class OrderDetailDTO {
     private Date date;
     private Time time;
     private String status;
-    
-    private int orderDetailId;
-    private String orderDetailItem;
-    private int orderDetailQty;
-    private String orderDetailPrice;
+    private List<OrderDetailDataDTO> details;
     
 	public String getOrderId() {
 		return orderId;
@@ -55,30 +52,13 @@ public class OrderDetailDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getOrderDetailId() {
-		return orderDetailId;
+	public List<OrderDetailDataDTO> getDetails() {
+		return details;
 	}
-	public void setOrderDetailId(int orderDetailId) {
-		this.orderDetailId = orderDetailId;
+	public void setDetails(List<OrderDetailDataDTO> details) {
+		this.details = details;
 	}
-	public String getOrderDetailItem() {
-		return orderDetailItem;
-	}
-	public void setOrderDetailItem(String orderDetailItem) {
-		this.orderDetailItem = orderDetailItem;
-	}
-	public int getOrderDetailQty() {
-		return orderDetailQty;
-	}
-	public void setOrderDetailQty(int orderDetailQty) {
-		this.orderDetailQty = orderDetailQty;
-	}
-	public String getOrderDetailPrice() {
-		return orderDetailPrice;
-	}
-	public void setOrderDetailPrice(String orderDetailPrice) {
-		this.orderDetailPrice = orderDetailPrice;
-	}
+	
 
     
 }
