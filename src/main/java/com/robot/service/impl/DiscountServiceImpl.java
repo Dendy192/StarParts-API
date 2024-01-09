@@ -108,11 +108,17 @@ public class DiscountServiceImpl implements DiscountsService {
 							}
 
 						} else {
-							ddtod.setName(dc.getDiscountName());
-							ddtod.setType(dd.getDiscountDetailRules());
-							ddtod.setAmmount(dd.getDiscountDetailAmmount());
-							status = true;
-							lDdtoD.add(ddtod);
+							Outlet outlet = ooutlet.get();
+							Optional<TypeOutlet> oto = typeRepository.findById(outlet.getType());
+							TypeOutlet to = oto.get();
+							if (dc.getDiscountOutletType().equalsIgnoreCase(to.getName())) {
+								ddtod.setName(dc.getDiscountName());
+								ddtod.setType(dd.getDiscountDetailRules());
+								ddtod.setAmmount(dd.getDiscountDetailAmmount());
+								status = true;
+								lDdtoD.add(ddtod);
+							}
+
 						}
 
 					}

@@ -15,29 +15,31 @@ import lombok.Data;
 @Table(name = "\"SP_DISCOUNTS\"")
 public class Discount implements Serializable {
 	private static long serialVersionUID = 1L;
-	
+
 	@Id
 	@Column(name = "\"DISCOUNTS_ID\"")
 	private String discountId;
-	
+
 	@Column(name = "\"DISCOUNTS_NAME\"")
 	private String discountName;
-	
-	
+
 	@Column(name = "\"DISCOUNTS_TYPE\"")
 	private String discountType;
-	
+
 	@Column(name = "\"DISCOUNTS_START_DATE\"")
 	private Date discountStartDate;
-	
+
 	@Column(name = "\"DISCOUNTS_EXPIRED_DATE\"")
 	private Date discountEndDate;
-	
+
 	@Column(name = "\"DISCOUNTS_START_TIME\"")
 	private Time discountStartTime;
-	
+
 	@Column(name = "\"DISCOUNTS_EXPIRED_TIME\"")
 	private Time discountEndTime;
+
+	@Column(name = "\"DISCOUNTS_OUTLET_TYPE\"")
+	private String discountOutletType;
 
 	public String getDiscountId() {
 		return discountId;
@@ -95,14 +97,20 @@ public class Discount implements Serializable {
 		this.discountEndTime = discountEndTime;
 	}
 
+	public String getDiscountOutletType() {
+		return discountOutletType;
+	}
+
+	public void setDiscountOutletType(String discountOutletType) {
+		this.discountOutletType = discountOutletType;
+	}
+
 	@Override
 	public String toString() {
 		return "Discount [discountId=" + discountId + ", discountName=" + discountName + ", discountType="
 				+ discountType + ", discountStartDate=" + discountStartDate + ", discountEndDate=" + discountEndDate
-				+ ", discountStartTime=" + discountStartTime + ", discountEndTime=" + discountEndTime + "]";
+				+ ", discountStartTime=" + discountStartTime + ", discountEndTime=" + discountEndTime
+				+ ", discountOutletType=" + discountOutletType + "]";
 	}
-	
-	
-	
-	
+
 }
