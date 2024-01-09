@@ -26,28 +26,32 @@ import com.robot.repo.TypeRepository;
 import com.robot.service.DiscountsService;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
 @Service
 public class DiscountServiceImpl implements DiscountsService {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(DiscountServiceImpl.class);
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Autowired
 	DiscountsRepository discountsRepository;
-	
+
 	@Autowired
 	DiscountsDetailRepository discountsDetailRepository;
-	
+
 	@Autowired
 	OutletRepository outletRepository;
-	
+
 	@Autowired
 	TypeRepository typeRepository;
-	
+
 	@Autowired
 	OutletEntity oE;
-	
+
 	@Override
 	public DiscountsDTO getDiscount(String id) {
 		// TODO Auto-generated method stub
@@ -55,77 +59,83 @@ public class DiscountServiceImpl implements DiscountsService {
 		java.util.Date currentDate = new java.util.Date();
 		LocalTime currentTime = LocalTime.now();
 		List<DiscountsDTOData> lDdtoD = new ArrayList<>();
-		Optional<List<Discount>> oLdc =Optional.ofNullable(discountsRepository.findAll());
+		Optional<List<Discount>> oLdc = Optional.ofNullable(discountsRepository.findAll());
+		System.out.println(oLdc.isPresent());
 		boolean status = false;
 		Optional<Outlet> ooutlet = outletRepository.findById(id);
 		try {
-			if(ooutlet.isPresent()) {
+			if (ooutlet.isPresent()) {
 				Outlet outlet = ooutlet.get();
 				Optional<TypeOutlet> oto = typeRepository.findById(outlet.getType());
 				TypeOutlet to = oto.get();
-				DiscountsDTOData  ddtod1  = new DiscountsDTOData();
+				DiscountsDTOData ddtod1 = new DiscountsDTOData();
 				ddtod1.setName(to.getName());
 				ddtod1.setType("Outlet");
 				ddtod1.setAmmount(to.getPercen());
 				lDdtoD.add(ddtod1);
 			}
-		if(oLdc.isPresent()) {
-			List<Discount> lD = oLdc.get();
-//			System.out.println(id);
-			for(Discount dc : lD) {
-				System.out.println(dc.toString());
-				
-				if(isValidDateAndTime(dc, currentDate, currentTime)) {
-					System.out.println(dc.getDiscountId());
-					DiscountsDetail dd = discountsDetailRepository.findBydiscountDetailId(dc.getDiscountId());
-//					tambahin validasi nya di sini buat cek misalkan dia per toko misalkan depannya bdg atau 
-//					toko tertentu bikin rulesnya
-//					System.out.println("masuk sini");
-					DiscountsDTOData  ddtod  = new DiscountsDTOData();
-					if(dc.getDiscountType().equalsIgnoreCase("outlet")) {
-						String sql = "SELECT id, name, email, phone, status FROM Outlet WHERE "+dd.getDiscountDetailRules();
-						log.info(sql);
-//						System.out.println(lO);
-//						System.out.println("msuk sini");
-						List<Outlet> lO = oE.findByQuery(sql);
-//						System.out.println(lO.toString());
-						for(Outlet ol : lO) {
-							if(ol.getId().equals(id)) {
+			if (oLdc.isPresent()) {
+				List<Discount> lD = oLdc.get();
+				// System.out.println(id);
+				for (Discount dc : lD) {
+					System.out.println(dc.toString());
+
+					if (isValidDateAndTime(dc, currentDate, currentTime)) {
+						System.out.println(dc.getDiscountId());
+						DiscountsDetail dd = discountsDetailRepository.findBydiscountDetailId(dc.getDiscountId());
+						// tambahin validasi nya di sini buat cek misalkan dia per toko misalkan
+						// depannya bdg atau
+						// toko tertentu bikin rulesnya
+						// System.out.println("masuk sini");
+						DiscountsDTOData ddtod = new DiscountsDTOData();
+						if (dc.getDiscountType().equalsIgnoreCase("outlet")) {
+							String sql = "SELECT o FROM Outlet o WHERE " + dd.getDiscountDetailRules();
+							// log.info(sql);
+							// System.out.println(lO);
+							// System.out.println("msuk sini");
+							List<Outlet> lO = oE.findByQuery(sql);
+							// System.out.println(lO.toString());
+							for (Outlet ol : lO) {
+								if (ol.getId().equals(id)) {
+									ddtod.setName(dc.getDiscountName());
+									ddtod.setType(dc.getDiscountType());
+									ddtod.setAmmount(dd.getDiscountDetailAmmount());
+									status = true;
+									lDdtoD.add(ddtod);
+									log.info("Present data");
+								}
+								//
+							}
+
+						} else {
+							Outlet outlet = ooutlet.get();
+							Optional<TypeOutlet> oto = typeRepository.findById(outlet.getType());
+							TypeOutlet to = oto.get();
+							if (dc.getDiscountOutletType().equalsIgnoreCase(to.getName())) {
 								ddtod.setName(dc.getDiscountName());
-								ddtod.setType(dc.getDiscountType());
+								ddtod.setType(dd.getDiscountDetailRules());
 								ddtod.setAmmount(dd.getDiscountDetailAmmount());
 								status = true;
 								lDdtoD.add(ddtod);
-								log.info("Present data");
 							}
-//				
+
 						}
-						
-						
-					}else {						
-						ddtod.setName(dc.getDiscountName());
-						ddtod.setType(dd.getDiscountDetailRules());
-						ddtod.setAmmount(dd.getDiscountDetailAmmount());
-						status = true;
-						lDdtoD.add(ddtod);
+
 					}
-					
-					
+
 				}
-				
+
 			}
-		
-		}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			log.error(e.getMessage());
 			// TODO: handle exception
 		}
 		ddto.setStatus(status);
 		ddto.setData(lDdtoD);
 		return ddto;
-		
+
 	}
-	
+
 	private boolean isValidDateAndTime(Discount discount, java.util.Date currentDate, LocalTime time) {
 		LocalTime lt1 = discount.getDiscountStartTime().toLocalTime();
 		LocalTime lt2 = discount.getDiscountEndTime().toLocalTime();
@@ -139,19 +149,18 @@ public class DiscountServiceImpl implements DiscountsService {
 		System.out.println(startRes);
 		System.out.println(endRes);
 		boolean result = false;
-		if(startDateResult >= 0 && endDateResult <=0 && startRes >= 0 && endRes <= -1 ) {
+		if (startDateResult >= 0 && endDateResult <= 0 && startRes >= 0 && endRes <= -1) {
 			result = true;
 		}
-//		if(!currentDate.isBefore(discount.getDiscountStartDate()) && 
-//				!currentDate.isAfter(discount.getDiscountEndDate()) ||
-//				currentDate.equals(discount.getDiscountStartDate()) &&
-//				currentDate.equals(discount.getDiscountEndDate()) && 
-//				startRes == 1 && 
-//				endRes == -1) {
-//			result = true;
-//		}
+		// if(!currentDate.isBefore(discount.getDiscountStartDate()) &&
+		// !currentDate.isAfter(discount.getDiscountEndDate()) ||
+		// currentDate.equals(discount.getDiscountStartDate()) &&
+		// currentDate.equals(discount.getDiscountEndDate()) &&
+		// startRes == 1 &&
+		// endRes == -1) {
+		// result = true;
+		// }
 		return result;
 	}
-	
 
 }
